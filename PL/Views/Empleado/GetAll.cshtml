@@ -1,0 +1,59 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "GetAll";
+}
+
+<h2>Empleados</h2>
+
+<div class="container">
+    <div class="row">
+        <div style="float:right; margin-bottom:1rem;">
+            @Html.ActionLink("Agregar", "Form", "Usuario", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <td class="text-center">Actualizar</td>
+                    <td class="hidden">IdEmpleado</td>
+                    <td>Nombre</td>
+                    <td>Apellido Paterno</td>
+                    <td>Apellido Materno</td>
+                    <td>Genero</td>
+                    <td>Estatus</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (ML.Empleado empleado in Model.Empleados)
+                {
+                    <tr>
+                        <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Empleado", new { IdEmpleado = empleado.IdEmpleado})"></a></td>
+
+                        <td class="hidden">@empleado.IdEmpleado</td>
+                        <td>@empleado.Nombre</td>
+                        <td>@empleado.ApellidoPaterno</td>
+                        <td>@empleado.ApellidoMaterno</td>
+                        <td>@empleado.Genero</td>
+                        @if (empleado.Estatus == true)
+                        {
+                            <td>
+                                <a href="@Url.Action("UpdateEstatus", "Empleado", new { IdEmpleado = empleado.IdEmpleado })">
+                                    <img src="~/Content/toggle-true.jpg" style=" height:25px; width:45px;" />
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a href="@Url.Action("UpdateEstatus", "Empleado", new { IdEmpleado = empleado.IdEmpleado })">
+                                    <img src="~/Content/toggle-false.jpg" style=" height:23px; width:45px;" />
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamenZDamianModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="IdEmpleado" />
+    </Key>
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="ExamenZDamianEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
+    <FunctionImport Name="EmpleadoDelete">
+      <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoUpdate">
+      <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Estatus" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoGetAll" ReturnType="Collection(ExamenZDamianModel.EmpleadoGetAll_Result)" />
+    <FunctionImport Name="EmpleadoGetById" ReturnType="Collection(ExamenZDamianModel.EmpleadoGetById_Result)">
+      <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Estatus" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="EmpleadoGetAll_Result">
+    <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Genero" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Estatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpleadoGetById_Result">
+    <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Genero" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Estatus" Nullable="true" />
+  </ComplexType>
+</Schema>
